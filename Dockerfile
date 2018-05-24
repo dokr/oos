@@ -8,12 +8,6 @@ RUN wget ${DL_URL}
 
 FROM scratch
 
-ARG APP=kubebins
-ARG VERSION=1.9.6
-ARG DIR=/dl/
-
-LABEL APP=${APP}
-LABEL VERSION=${VERSION}
-LABEL DIR=${DIR}
-
-COPY --from=dl /opt/dl/ ${DIR}
+COPY --from=dl /opt/dl/ /data/bin/
+COPY etc/ /data/etc/
+COPY opt/ /data/opt/

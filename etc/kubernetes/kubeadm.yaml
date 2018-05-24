@@ -1,0 +1,47 @@
+api:
+  advertiseAddress: x_x_x_x
+  bindPort: 6443
+apiServerExtraArgs:
+  service-node-port-range: 30000-60000
+  # oidc-issuer-url: https://account.ckeyer.com/
+  # oidc-client-id: example-app
+  # oidc-ca-file: /etc/kubernetes/ssl/openid-ca.pem
+  # oidc-username-claim: email
+  # oidc-groups-claim: groups
+authorizationModes:
+- Node
+- RBAC
+certificatesDir: /etc/kubernetes/pki
+etcd:
+  endpoints:
+    - http://x_x_x_x:2379
+  # image: quay.io/coreoss/etcd:3.2
+# imageRepository: registry.cn-beijing.aliyuncs.com/wa
+kubeletConfiguration:
+  clusterDomain: kubedev.ckeyer.com
+kubernetesVersion: v1.9.6
+networking:
+  dnsDomain: kubedev.ckeyer.com
+  podSubnet: 10.100.0.0/16
+  serviceSubnet: 10.96.0.0/12
+kubeProxy:
+  config:
+    bindAddress: 0.0.0.0
+    clusterCIDR: ""
+    enableProfiling: false
+    featureGates: ""
+    iptables:
+      masqueradeAll: false
+      masqueradeBit: 14
+      minSyncPeriod: 0s
+      syncPeriod: 30s
+    ipvs:
+      minSyncPeriod: 1s
+      scheduler: ""
+      syncPeriod: 30s
+    metricsBindAddress: 127.0.0.1:10249
+    mode: "iptables"
+    oomScoreAdj: -999
+    portRange: "30000-60000"
+    resourceContainer: /kube-proxy
+    udpTimeoutMilliseconds: 250ms
